@@ -8,7 +8,9 @@ public class Hero : Unit
 {
     public Movement movement => this.GetCachedComponent(ref _movement);
     public HeroController controller => this.GetCachedComponent(ref _controller);
+    public Weapon weapon => this.GetCachedComponentInChildren(ref _weapon);
     Movement _movement;
     HeroController _controller;
+    Weapon _weapon;
 
 }
