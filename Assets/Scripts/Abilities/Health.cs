@@ -7,13 +7,17 @@ using UnityEngine;
 /// </summary>
 public class Health : Ability
 {
-    public event System.Action onDied;
+    public event System.Action onDie;
+    public event System.Action<float> onTakeDamage;
 
     public float maxHp = 100;
     [Range(0, 1)]
     [SerializeField]
     [UnityEngine.Serialization.FormerlySerializedAs("hp")]
     float _hp = 1;
+
+    public GameObject deathPrefab;
+    public bool dontDestroyOnDie;
 
     /// <summary>
     /// normalized hp
@@ -27,7 +31,11 @@ public class Health : Ability
             return;
         _hp = 0;
         isDead = true;
-        onDied?.Invoke();
+        onDie?.Invoke();
+        if (deathPrefab)
+            Instantiate(deathPrefab, transform.position, transform.rotation);
+        if (!dontDestroyOnDie)
+            Destroy(unit.gameObject);
     }
 
     public void ChangeHp(float newHp)
@@ -43,6 +51,7 @@ public class Health : Ability
         if (isDead)
             return;
         var normalizedAmount = amount / maxHp;
+        onTakeDamage?.Invoke(amount);
         ChangeHp(hp - normalizedAmount);
     }
 }

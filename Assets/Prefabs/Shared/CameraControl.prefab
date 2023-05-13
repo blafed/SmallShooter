@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3275874864674858765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.967696}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.5372549, g: 0.7254902, b: 0.32156864, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -93,7 +93,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -192,6 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3275874865251111801}
   - component: {fileID: 3275874865251111800}
+  - component: {fileID: 1160546655}
   m_Layer: 0
   m_Name: CameraControl
   m_TagString: Untagged
@@ -227,3 +228,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c1545c42987da4692f181e927c8a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMaxDistance: 20
+--- !u!114 &1160546655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275874865251111798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159404f484c1a574fae6dc3e81e2e80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5
+  maxEscapeDistance: 2
+  turboSpeed: 5
+  offset: {x: 0, y: 0}

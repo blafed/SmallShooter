@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 public static partial class Extensions
 {
@@ -35,6 +36,31 @@ public static partial class Extensions
         {
             SetLayerRecrusive(t.gameObject, layer);
         }
+    }
+    public static void ReActivate(this GameObject go)
+    {
+        go.SetActive(false);
+        go.SetActive(true);
+    }
+
+    public static T GetRandom<T>(this IReadOnlyList<T> list)
+    {
+        if (list.Count == 0)
+            return default;
+        var index = Random.Range(0, list.Count);
+        return list[index];
+    }
+
+    public static Rect GetOrthographicBounds(this Camera camera)
+    {
+        float screenAspect = (float)camera.pixelWidth / (float)camera.pixelHeight;
+        float cameraHeight = camera.orthographicSize * 2;
+        var size = new Vector2(cameraHeight * screenAspect, cameraHeight);
+        var bounds = new Rect(
+            (Vector2)camera.transform.position - size * .5f,
+            size
+            );
+        return bounds;
     }
 }
 

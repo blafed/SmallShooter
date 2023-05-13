@@ -11,7 +11,9 @@ public class Unit : MonoBehaviour
         set => transform.position = value;
     }
     public Health health => this.GetCachedComponent(ref _health);
+    public Shape shape => this.GetCachedComponentInChildren(ref _shape);
     Health _health;
+    Shape _shape;
 
     protected void AssertComponentInChildren<T>()
     {

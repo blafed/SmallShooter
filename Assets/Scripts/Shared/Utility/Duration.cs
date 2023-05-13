@@ -7,7 +7,7 @@ public class Duration
     [Min(0)]
     [SerializeField]
     float value = 1;
-    float startAtTime;
+    float startAtTime = float.MinValue;
     bool triggerBool;
     public float elabsed => Time.time - startAtTime;
     public float remaining => value - elabsed;

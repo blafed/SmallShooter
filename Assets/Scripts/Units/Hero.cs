@@ -4,13 +4,19 @@ using UnityEngine;
 /// Represents the main character that can be controlled by player
 /// </summary>
 [RequireComponent(typeof(Movement), typeof(Health), typeof(HeroController))]
-public class Hero : Unit
+public class Hero : Character
 {
-    public Movement movement => this.GetCachedComponent(ref _movement);
+    public static Hero current;
     public HeroController controller => this.GetCachedComponent(ref _controller);
     public Weapon weapon => this.GetCachedComponentInChildren(ref _weapon);
-    Movement _movement;
     HeroController _controller;
     Weapon _weapon;
+
+
+    private void Awake()
+    {
+        if (!current)
+            current = this;
+    }
 
 }

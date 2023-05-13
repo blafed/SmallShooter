@@ -1,24 +1,31 @@
 using UnityEngine;
 
-namespace SmallShooter.Camera
+public class CameraFollow : MonoBehaviour
 {
-    public class CameraFollow : MonoBehaviour
-    {
-        public Transform target;
-        public float speed = 4;
-        public Vector2 offset = new Vector2(0, 0);
-        CameraControl cameraControl;
+    public Transform target;
+    public float speed = 4;
+    public float maxEscapeDistance = 2;
+    public float turboSpeed = 2;
+    public Vector2 offset = new Vector2(0, 0);
+    CameraControl cameraControl;
 
-        private void Awake()
+
+
+    private void Awake()
+    {
+        cameraControl = GetComponent<CameraControl>();
+    }
+    private void FixedUpdate()
+    {
+        if (target)
         {
-            cameraControl = GetComponent<CameraControl>();
-        }
-        private void Update()
-        {
-            if (target)
-            {
-                cameraControl.center = Vector2.Lerp(cameraControl.center, target.position + (Vector3)offset, Time.deltaTime * speed);
-            }
+            var targetPosition = target.position + (Vector3)offset;
+            var diff = (Vector2)target.position - cameraControl.center;
+
+            if (diff.sqrMagnitude < maxEscapeDistance.Squared())
+                cameraControl.center = Vector2.Lerp(cameraControl.center, targetPosition, Time.fixedDeltaTime * speed);
+            else
+                cameraControl.center = Vector2.Lerp(cameraControl.center, targetPosition, Time.fixedDeltaTime * turboSpeed);
         }
     }
 }

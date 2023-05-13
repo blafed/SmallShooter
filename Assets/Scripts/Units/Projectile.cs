@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), (typeof(Movement)))]
 public class Projectile : Unit
 {
     public Weapon weapon { get; set; }
